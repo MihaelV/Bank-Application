@@ -9,8 +9,10 @@ class MyFrameWnd : public CFrameWnd
 {
 public:
 	MyFrameWnd() {
+
 		CString WndClass = AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW, AfxGetApp()->LoadStandardCursor(IDC_ARROW),
-			(HBRUSH)::CreateSolidBrush(RGB(240, 248, 255)), AfxGetApp()->LoadStandardIcon(MAKEINTRESOURCE(IDB_PNG1)));
+			(HBRUSH)::CreateSolidBrush(RGB(240, 248, 255)));
+		
 
 		Create(WndClass, L"Bank",WS_OVERLAPPED | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZE, rectDefault,NULL, NULL);
 	}
@@ -55,7 +57,7 @@ public:
 	// INPUT FUNCTIONS
 	afx_msg void OnSearchInputChange();
 
-public:
+private:
 	CButton LoginButton, AddUserButton, SearchButton,FindUser,LogOutButton;
 	CButton UserDeleteButton, UserExitButton, UserIncreaseMoneyButton, UserDecreaseMoneyButton;
 	CEdit UserInputIncreaseMoney, UserInputDecreaseMoney;
@@ -128,13 +130,7 @@ int MyFrameWnd::PreCreateWindow(CREATESTRUCT& cs) {
 
 void MyFrameWnd::OnClose()
 {
-	if (AfxMessageBox(CString("Are you sure you want Exit"), MB_YESNO) == IDYES) {
-
-		
-
-		MyFrameWnd::CloseWindow();
-		MyFrameWnd::DestroyWindow();
-	}
+	if (AfxMessageBox(CString("Are you sure you want Exit"), MB_YESNO) == IDYES) {MyFrameWnd::DestroyWindow();}
 }
 
 void MyFrameWnd::OnDestroy()
