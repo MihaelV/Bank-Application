@@ -138,7 +138,7 @@ void MyFrameWnd::OnDestroy()
 	CFrameWnd::OnDestroy();
 
 	TRY{
-		database.Open(NULL,false,false, sDsn);
+		database.Open(0,false,false, sDsn);
 
 		SqlString.Format(L"UPDATE Employees SET LogIn='No' WHERE Name='%s' AND Surname='%s' AND Password='%s';",LogInName,LogInSurname,LogInPassword);
 		database.ExecuteSQL(SqlString);
@@ -464,7 +464,7 @@ void MyFrameWnd::OnLogInButtonClicked() {
 
 	TRY{
 
-	database.Open(NULL,false,false, sDsn);
+	database.Open(0,false,false, sDsn);
 
 	CRecordset recset(&database);
 
@@ -514,7 +514,7 @@ void MyFrameWnd::OnLogInButtonClicked() {
 void MyFrameWnd::OnLogOutButtonClicked() {
 
 	TRY{
-		database.Open(NULL,false,false, sDsn);
+		database.Open(0,false,false, sDsn);
 
 		SqlString.Format(L"UPDATE Employees SET LogIn='No' WHERE Name='%s' AND Surname='%s' AND Password='%s';",LogInName,LogInSurname,LogInPassword);
 		database.ExecuteSQL(SqlString);
@@ -556,7 +556,7 @@ void MyFrameWnd::OnSearchButtonClicked() {
 
 	TRY{
 
-	database.Open(NULL,false,false, sDsn);
+	database.Open(0,false,false, sDsn);
 
 	CRecordset recset(&database);
 
@@ -624,7 +624,7 @@ void MyFrameWnd::OnUserButtonDeleteClicked() {
 	if (AfxMessageBox(UserDeleteMessageBoxText,MB_YESNO) == IDYES)
 	{
 		TRY{
-			database.Open(NULL,false,false, sDsn);
+			database.Open(0,false,false, sDsn);
 
 			SqlString.Format(L"DELETE FROM Users WHERE Name='%s' AND Surname='%s';",UserNameDatabase,UserSurnameDatabase);
 			database.ExecuteSQL(SqlString);
@@ -657,7 +657,7 @@ void MyFrameWnd::OnUserButtonIncreaseMoneyClicked() {
 	UserAmountOfMoney.Format(L"%i",_wtoi(UserAmountOfMoneyDatabase) + _wtoi(UserAmountOfMoney));
 
 	TRY{
-			database.Open(NULL,false,false, sDsn);
+			database.Open(0,false,false, sDsn);
 
 			SqlString.Format(L"UPDATE Users SET AmountOfMoney='%s' WHERE Name='%s' AND Surname='%s';", UserAmountOfMoney,UserNameDatabase,UserSurnameDatabase);
 			database.ExecuteSQL(SqlString);
@@ -686,7 +686,7 @@ void MyFrameWnd::OnUserButtonDecreaseMoneyClicked() {
 		UserAmountOfMoney.Format(L"%i", _wtoi(UserAmountOfMoneyDatabase) - _wtoi(UserAmountOfMoney));
 
 		TRY{
-			database.Open(NULL,false,false, sDsn);
+			database.Open(0,false,false, sDsn);
 
 			SqlString.Format(L"UPDATE Users SET AmountOfMoney='%s' WHERE Name='%s' AND Surname='%s';", UserAmountOfMoney,UserNameDatabase,UserSurnameDatabase);
 			database.ExecuteSQL(SqlString);
